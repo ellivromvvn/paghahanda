@@ -177,31 +177,55 @@ hansul |>
 
 ```{r}
 ob4 <- cor.test(hansul$h_mean, hansul$s_mean,
-                method = "spearman", exact=FALSE)
+                method = "pearson", exact=FALSE)
 
 tidy(ob4) |>
   mutate_if(is.numeric, round, 2) |>
   gt()
 ```
 
+```{r}
+hansul |>
+ggplot() +
+  aes(x = h_mean, y = s_mean) +
+  geom_point(colour = "#0c4c8a", position = "jitter") +
+  theme_minimal()
+```
+
 ### Objective 5
 
 ```{r}
 ob5 <- cor.test(hansul$h_mean, hansul$grado,
-                method = "spearman", exact=FALSE)
+                method = "pearson", exact=FALSE)
   
 tidy(ob5) |>
   mutate_if(is.numeric, round, 2) |>
   gt()
 ```
 
+```{r}
+hansul |>
+ggplot() +
+  aes(x = h_mean, y = grado) +
+  geom_point(colour = "#0c4c8a", position = "jitter") +
+  theme_minimal()
+```
+
 ### Objective 6
 
 ```{r}
 ob6 <- cor.test(hansul$s_mean, hansul$grado,
-                method = "spearman", exact=FALSE)
+                method = "pearson", exact=FALSE)
   
 tidy(ob6) |>
   mutate_if(is.numeric, round, 2) |>
   gt()
+```
+
+```{r}
+hansul |>
+ggplot() +
+  aes(x = s_mean, y = grado) +
+  geom_point(colour = "#0c4c8a", position = "jitter") +
+  theme_minimal()
 ```
