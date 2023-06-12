@@ -42,6 +42,7 @@ library(gt)
 library(rstatix)
 library(broom)
 library(smplot2)
+library(apa)
 ```
 
 ### Import Data
@@ -208,7 +209,7 @@ ggplot() +
 
 ```{r}
 ob5 <- cor.test(hansul1$h_mean, hansul1$grado,
-                method = "spearman", exact=FALSE)
+                method = "kendall", exact=FALSE)
   
 tidy(ob5) |>
   mutate_if(is.numeric, round, 2) |>
@@ -216,11 +217,16 @@ tidy(ob5) |>
 ```
 
 ```{r}
+cor_apa(cor.test(hansul1$h_mean, hansul1$grado,
+                method = "kendall", exact=FALSE))
+```
+
+```{r}
 hansul1 |>
 ggplot() +
   aes(x = h_mean, y = grado) +
   geom_point(colour = "#0c4c8a", position = "jitter") +
-  sm_statCorr(corr_method = 'spearman') +
+  sm_statCorr(corr_method = 'kendall') +
   theme_minimal()
 ```
 
@@ -228,7 +234,7 @@ ggplot() +
 
 ```{r}
 ob6 <- cor.test(hansul1$s_mean, hansul1$grado,
-                method = "spearman", exact=FALSE)
+                method = "kendall", exact=FALSE)
   
 tidy(ob6) |>
   mutate_if(is.numeric, round, 2) |>
@@ -240,6 +246,6 @@ hansul1 |>
 ggplot() +
   aes(x = s_mean, y = grado) +
   geom_point(colour = "#0c4c8a", position = "jitter") +
-  sm_statCorr(corr_method = 'spearman') +
+  sm_statCorr(corr_method = 'kendall') +
   theme_minimal()
 ```
